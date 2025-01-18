@@ -24,7 +24,7 @@ const Compiler = () => {
     const loadCode = async () => {
         try {
             const response = await axios.post(
-                backendUrl + "/compiler/load",
+                `${backendUrl}/compiler/load`,
                 {
                     urlId: urlId,
                 },
