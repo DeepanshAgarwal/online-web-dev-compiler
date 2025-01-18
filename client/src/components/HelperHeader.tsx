@@ -32,6 +32,7 @@ const HelperHeader = () => {
     const [saveLoading, setSaveLoading] = useState<boolean>(false);
     const [shareBtn, setShareBtn] = useState<boolean>(false);
     const { urlId } = useParams();
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     const navigate = useNavigate();
 
@@ -50,10 +51,9 @@ const HelperHeader = () => {
     const handleSaveCode = async () => {
         setSaveLoading(true);
         try {
-            const response = await axios.post(
-                "http://localhost:4000/compiler/save",
-                { fullCode: fullCode }
-            );
+            const response = await axios.post(backendUrl + "/compiler/save", {
+                fullCode: fullCode,
+            });
             console.log(response.data);
             navigate(`/compiler/${response.data.url}`, { replace: true });
         } catch (error) {

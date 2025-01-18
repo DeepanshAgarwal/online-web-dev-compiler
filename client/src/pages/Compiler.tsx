@@ -19,15 +19,13 @@ import { toast } from "sonner";
 const Compiler = () => {
     const { urlId } = useParams();
     const dispatch = useDispatch();
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     const loadCode = async () => {
         try {
-            const response = await axios.post(
-                "http://localhost:4000/compiler/load",
-                {
-                    urlId: urlId,
-                }
-            );
+            const response = await axios.post(backendUrl + "/compiler/load", {
+                urlId: urlId,
+            });
             dispatch(updateFullCode(response.data.fullCode));
         } catch (error) {
             if (axios.isAxiosError(error)) {
