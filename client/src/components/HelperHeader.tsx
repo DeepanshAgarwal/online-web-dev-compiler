@@ -51,17 +51,9 @@ const HelperHeader = () => {
     const handleSaveCode = async () => {
         setSaveLoading(true);
         try {
-            const response = await axios.post(
-                `${backendUrl}/compiler/save`,
-                {
-                    fullCode: fullCode,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
+            const response = await axios.post(`${backendUrl}/compiler/save`, {
+                fullCode: fullCode,
+            });
 
             navigate(`/compiler/${response.data.url}`, { replace: true });
         } catch (error) {

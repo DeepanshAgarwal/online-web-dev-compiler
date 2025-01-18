@@ -23,17 +23,9 @@ const Compiler = () => {
 
     const loadCode = async () => {
         try {
-            const response = await axios.post(
-                `${backendUrl}/compiler/load`,
-                {
-                    urlId: urlId,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
+            const response = await axios.post(`${backendUrl}/compiler/load`, {
+                urlId: urlId,
+            });
             dispatch(updateFullCode(response.data.fullCode));
         } catch (error) {
             if (axios.isAxiosError(error)) {
